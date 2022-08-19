@@ -1,13 +1,54 @@
-@extends('layouts.master')
+@extends('layouts.shopowner')
 
 @section('title', 'FAST Add Services')
 
 @section('content')
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    <h4>Add New Service
+                        <a href = "{{ url ('shop_owner/services') }}" class = "btn btn-sm btn-danger float-end">Back </a>
+                    </h4>
+                </div>
+                <div class="card-body">
+                    
+                    <form action="{{ url ('shop_owner/add-services') }}" method="post">
+                        @csrf
 
+                        <div class="form-group mb-3">
+                            <label>Service Name</label>
+                            <input type="text" name="service_name" class="form-control">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label>Date Created</label>
+                            <input type="date" name="date_created" class="form-control">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label>Price</label>
+                            <input type="number" name="price" class="form-control">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <center><button type="submit" class="btn btn-primary">Add</button></center>
+                        </div>
+                    </form>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Add Services Modal -->
-    <div class="modal fade" id="addservicemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <!--<div class="modal fade" id="addservicemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
         <div class="modal-dialog modal-dialog-scrollable" >
             <div class="modal-content">
                 <div class="modal-header">
@@ -54,6 +95,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
 @endsection

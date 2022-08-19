@@ -1,16 +1,21 @@
-@extends('layouts.master')
+@extends('layouts.shopowner')
 
-@section('title', 'FAST Dashboard')
+@section('title', 'FAST Products')
 
 @section('content')
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
+    @if(session('status'))
+        
+        <h4 class="alert alert-warning mb-2">{{session('status')}}</h4>
+    @endif
+
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-danger-800">List of Products</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <a href="{{ url ('shop_owner/add-products') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
             <i class="fa-sm text-white-50"></i>Add New Product</a>
     </div>
     <!-- End Page Heading -->
@@ -23,41 +28,37 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Image</th>
                             <th>Date Created</th>
                             <th>Product Name</th>
                             <th>Price</th>
-                            <th>Status</th>
                             <th>Action</th>         
                         </tr>
                     </thead>
                     <tbody>
+                        @php $i=1; @endphp
+                        @forelse ($product_table as $key => $item)
                         <tr>
-                            <td>1</td>
-                            <td>07/24/2022</td>
-                            <td>Battery</td>
-                            <td>250.00</td>
-                            <td>Active</td>
+                            <td>{{ $i++ }}</td>
+                            <td><img src = "{{ $item['images'] }}"</td>
+                            <td>{{ $item['date_created'] }}</td>
+                            <td>{{ $item['product_name'] }}</td>
+                            <td>{{ $item['price'] }}</td>
                             <td>
                                 <center>
-                                    <a href="" class="btn btn-sm btn-success">Edit</a>
-                                    <a href="" class="btn btn-sm btn-danger">Delete</a>
+                                    <a href="{{ url ('shop_owner/edit-products/'.$key) }}" class="btn btn-sm btn-success">Edit</a>
+                                    <a href="{{ url ('shop_owner/delete-products/'.$key) }}" class="btn btn-sm btn-danger">Delete</a>
                                 </center>
-                            </td>
+                            </td> 
                         </tr>
+
+                        @empty
                         <tr>
-                            <td>2</td>
-                            <td>07/25/2022</td>
-                            <td>Spark Plugs</td>
-                            <td>150.00</td>
-                            <td>Active</td>
-                            <td>
-                                <center>
-                                    <a href="" class="btn btn-sm btn-success">Edit</a>
-                                    <a href="" class="btn btn-sm btn-danger">Delete</a>
-                                </center>
-                            </td>
+                            <td colspan="6">No Record Found</td>
                         </tr>
+                        @endforelse
                     </tbody>
+                
                 </table>
             </div>
         </div>

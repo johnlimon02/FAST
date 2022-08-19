@@ -173,7 +173,7 @@
             <span class="mr-2 d-none d-lg-inline text-gray-600 small">Shop Owner</span>
             <!-- <img class="img-profile rounded-circle"
                 src="img/undraw_profile.svg"> -->
-                <img src="admin1.png" width="40px">
+                <img src="/assets/img/admin_profile.png" width="40px">
             
         </a>
         <!-- Dropdown - User Information -->
